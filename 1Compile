@@ -11,3 +11,10 @@ LIBNAME xlRead clear;  -- clear the library data
 -- Work library is temporary, files deleted at end of session; default setting
 data= work.tablename;
 data=tablename
+
+-- Sample table
+options validvarname = v7; -- to ensure data column names follow the norms
+libname df1 xlsx "path/f1/f2/file.xlsx"; --- path to the file, df1 is the library name, xlsx is the type of data we want to import
+proc contents data = df1.sheet_name; -- all sheets will be read as separate tables in the df1 library folder
+run; 
+libname df1 clear; -- makes sense to clear data source not needed
