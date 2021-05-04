@@ -16,5 +16,5 @@ data=tablename
 options validvarname = v7; -- to ensure data column names follow the norms
 libname df1 xlsx "path/f1/f2/file.xlsx"; --- path to the file, df1 is the library name, xlsx is the type of data we want to import
 proc contents data = df1.sheet_name; -- all sheets will be read as separate tables in the df1 library folder
-run; 
+run;  -- if run not added here, the next line to clear gets an error, that the library is being used
 libname df1 clear; -- makes sense to clear data source not needed
