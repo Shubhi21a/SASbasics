@@ -18,3 +18,8 @@ libname df1 xlsx "path/f1/f2/file.xlsx"; --- path to the file, df1 is the librar
 proc contents data = df1.sheet_name; -- all sheets will be read as separate tables in the df1 library folder
 run;  -- if run not added here, the next line to clear gets an error, that the library is being used
 libname df1 clear; -- makes sense to clear data source not needed
+
+-- importing data
+proc import datafile="path/filename" dbms=filetype out=output-table name <replace>;
+<guessingrows = n|max;>
+run;
