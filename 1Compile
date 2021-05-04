@@ -2,3 +2,7 @@
 -- creating a library to read files
 LIBNAME libName BASE "path/data"; ** does not need a run statement at the end
 /* BASE keyword is not needed, it is for reading SAS data. For other input sources ,we write EXCEL/SQL etc.
+
+-- Work library is temporary, files deleted at end of session; default setting
+data= work.tablename;
+data=tablename
