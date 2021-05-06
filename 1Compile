@@ -41,3 +41,13 @@ run;
 proc import datafile="folder/data/filename.tab"
             dbms=tab out=df_tab replace;
 run;
+
+
+--- importing excel ( https://www.coursera.org/learn/sas-programming-basics/lecture/MF6Gv/importing-an-excel-file)
+proc import datafile = "path/file_name.xlsx" dbms= xlsx
+out= output_df_name <replace>;
+sheet= sheet_name;
+run;
+
+--- xlsx libname v/s proc import
+libname reads directly from file, reads current data | proc import creates a copy of the data, data to be reimported if there are changes in data
