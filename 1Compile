@@ -66,6 +66,9 @@ run;
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/allprodsproc/procedures.htm
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/proc/p10qiuo2yicr4qn17rav8kptnjpu.htm
 
+
+---- Validating Data --------------------------------------
+
 --- proc print
 proc print data= df_name (obs=5); ** shows all rows by default, hence, you select your choice of records to print. in that aspect, similar to head;
 run;
@@ -73,7 +76,8 @@ run;
 -- to subset a few columns + seeing top 5 records, 
 proc print data= df_name (obs=5);
 var col1 col2 col5 col9;
-run
+run;
+
 /* the column names need not be separated by comma. if you know the names, you can type them, do so
 otherwise, select column names in the desired order (ctrl+ click) from the SAS table explorer, and then drag them */
 shortcut to add a comment . select the text to be commented and press ctrl+/
@@ -82,4 +86,14 @@ shortcut to add a comment . select the text to be commented and press ctrl+/
 proc means data=df_name;
 run;
 var col1 col2; /* only numeric cols*/
+
+/* more details of the data (extreme values etc.)*/
+proc univariate data = df_name;
+var col1, col2;
+run;
+
+/* frequency..unique values .. similar to table in R? */
+proc freq data=df_name;
+tables col5, col6; ---- TABLES keyword and NOT var here
+run;
 
