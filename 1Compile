@@ -65,3 +65,17 @@ run;
 --- SAS documentation
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/allprodsproc/procedures.htm
 https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/proc/p10qiuo2yicr4qn17rav8kptnjpu.htm
+
+--- proc print
+proc print data= df_name (obs=5); ** shows all rows by default, hence, you select your choice of records to print. in that aspect, similar to head;
+run;
+
+-- to subset a few columns, 
+proc print data= df_name (obs=5);
+var col1 col2 col5;
+run
+/* the column names need not be separated by comma. if you know the names, you can type them, do so
+otherwise, select column names in the desired order (ctrl+ click) from the SAS table explorer, and then drag them */
+shortcut to add a comment . select the text to be commented and press ctrl+/
+
+
