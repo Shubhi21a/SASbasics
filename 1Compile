@@ -51,3 +51,13 @@ run;
 
 --- xlsx libname v/s proc import
 libname reads directly from file, reads current data | proc import creates a copy of the data, data to be reimported if there are changes in data
+
+--- avoiding truncation while reading data
+proc import datafile= "path/filename.csv" dbms=csv
+out=df_name replace;
+guessingrows=max; ** adding guessingrows ensures no truncation. it is to be added after the ";" for proc import syntax
+run;
+
+proc contents data = df_name; ***  data is a part of the syntax, and is required
+run;
+
