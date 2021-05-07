@@ -107,3 +107,9 @@ proc print data=libraryName.fileName(obs=50);
 	where col4 like "_I"; * second letter is I, two char in col4;
             where col5 like 'Z%;  * first letter is Z
 run;
+
+--- macro variable-----
+%let varName = value; * don't type strings in quotes
+
+proc print data=dfname;
+where categoryVar = "&varName";
