@@ -108,8 +108,19 @@ proc print data=libraryName.fileName(obs=50);
             where col5 like 'Z%;  * first letter is Z
 run;
 
---- macro variable-----
+--- macro variable----------------------
 %let varName = value; * don't type strings in quotes
 
 proc print data=dfname;
 where categoryVar = "&varName";
+
+%let numVar = 50;
+%let StringVar = abc; # this is case sensitive
+%letDateVar = 02JAN2018;
+
+PROC PRINT data= df_name;
+where val1 >= &numVar and cat1 = "&StringVar" and openDate >= "&DateVar"d;  * double quotes
+var id, val1,cat1,opendDate;
+run;
+
+
