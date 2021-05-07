@@ -119,7 +119,7 @@ where categoryVar = "&varName";
 %letDateVar = 02JAN2018;
 
 PROC PRINT data= df_name;
-where val1 >= &numVar and cat1 = "&StringVar" and openDate >= "&DateVar"d;  * double quotes
+where val1 >= &numVar and cat1 = "&StringVar" and openDate >= "&DateVar"d;  * double quotes have to be used around macro variables
 var id, val1,cat1,opendDate;
 run;
 
