@@ -97,3 +97,13 @@ proc freq data=df_name;
 tables col5, col6; ---- TABLES keyword and NOT var here
 run;
 
+-------WHERE---------
+Date comparison, format - "2-jan-18"d or "02JAN2018"d
+
+proc print data=libraryName.fileName(obs=50);
+	where col1 is missing; /*same as col1 = .*/
+	where col2 is not missing; /*same as col2 ne " "*/
+	where col3 between 150 and 155;
+	where col4 like "_I"; * second letter is I, two char in col4;
+            where col5 like 'Z%;  * first letter is Z
+run;
