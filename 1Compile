@@ -141,3 +141,24 @@ date9
 comma8.1- total space for 8 characters, one decimal place - 12,345.7
 dollar 10.2 - $12,345.67
 dollar 10. $12,346
+
+
+# https://support.sas.com/en/documentation.html
+Can also find this information by following these steps:
+Select Programming: SAS 9.4 and Viya.
+Under Syntax - Quick Links, select Formats under Language Elements.
+Select the link for Zw.d.
+
+# format
+proc print data=pg1.storm_summary(obs=20);
+	format Lat Lon 4. StartDate EndDate date9.;
+run;
+
+proc print data=pg1.storm_summary(obs=20);
+	format Lat Lon 4. StartDate EndDate date11.;
+run;
+
+proc freq data=pg1.storm_summary order=freq;
+	tables StartDate;
+	format StartDate monname.;
+run;
