@@ -123,4 +123,21 @@ where val1 >= &numVar and cat1 = "&StringVar" and openDate >= "&DateVar"d;  * do
 var id, val1,cat1,opendDate;
 run;
 
+---- formatting----
+# can format multiple columns via single format statement; format impacts the display, and NOT the raw data values
+proc print data = input_table;
+format col_name format;
+run;
 
+format: <$>format_name <w>.<d> 
+w- width, d- decimal places
+
+proc print data= df_name;
+format height weight 3. Birthdate date9;
+run;
+3. - rounds value to nearest wholenumber
+date9
+5.- Rounds to nearest whole number ( 5 digit values) - 12345.67 becomes 12346
+comma8.1- total space for 8 characters, one decimal place - 12,345.7
+dollar 10.2 - $12,345.67
+dollar 10. $12,346
