@@ -162,3 +162,13 @@ proc freq data=pg1.storm_summary order=freq;
 	tables StartDate;
 	format StartDate monname.;
 run;
+
+# to get all SAS files in the library
+libname PG1 BASE "EPG1V2/data";
+# to see top 15 records
+proc print data = pg1.storm_summary (obs=15);
+# filter and sort
+proc sort data=pg1.storm_summary out= storm_sort;
+	where basin in ("NA","na");
+	by descending maxwindmph ;
+run;
