@@ -191,5 +191,14 @@ proc sort data = df_min_values nodupkey;
 by descending col1 col2 col3;
 run;
 
+---- Combining sort, where
+
+libname LI1 BASE "path/folder";
+
+proc sort data=li1.df_name out=df_output;
+    by col1 descending col2;
+    where Type="abc";
+run;
+# sorts in scedning of col1, desc col2
 
 
