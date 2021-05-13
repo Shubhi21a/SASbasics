@@ -172,3 +172,24 @@ proc sort data=pg1.storm_summary out= storm_sort;
 	where basin in ("NA","na");
 	by descending maxwindmph ;
 run;
+
+------------------ Removing duplicates----------
+-- step 1
+proc sort data = df_input out = new_df_name nodupkey dupout = df_duplicate_records; * only 1st row will be kept, in case of duplicates;
+by _all_ ;
+run;
+#dupout stores the duplucates records which get removed
+
+-- step 2
+proc sort data= df_input out= df_min_values;
+where col1 is not missing and col2 is not missing;
+by descending col3 col2 col1;
+run;
+
+-- step 3
+proc sort data = df_min_values nodupkey;
+by descending col1 col2 col3;
+run;
+
+
+
