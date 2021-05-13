@@ -180,6 +180,13 @@ by _all_ ;
 run;
 #dupout stores the duplucates records which get removed
 
+proc sort data= df_name
+		  out=df_clean
+		  dupout=df_dups
+		  nodupkey;
+    by _all_;
+run;
+
 -- step 2
 proc sort data= df_input out= df_min_values;
 where col1 is not missing and col2 is not missing;
