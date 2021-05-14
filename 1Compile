@@ -220,3 +220,25 @@ run;
 
 You cannot use a SET statement to read unstructured data. (csv)
 Any data source that can be read via a library can be used as the input table in the SET statement. ( Excel, SAS tables)
+
+--- df2 gets df post filter
+data df2;
+set df1;
+where col1 > val1;
+run;
+
+data df2;
+set df1;
+where col1 >val1;
+keep col1 col2 col3; * subsets col1-3, can also use 'drop' to delete selected columns;
+run; 
+
+--- format in data step-----
+Format in data step permanently assigns a format to a column
+
+data df2;
+set df1;
+where col1>val1;
+format col2 4.1 col3 3.;
+run;
+
