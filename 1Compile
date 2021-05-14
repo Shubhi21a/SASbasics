@@ -242,3 +242,12 @@ where col1>val1;
 format col2 4.1 col3 3.;
 run;
 
+--------------- wd-------------------------------
+libname in1 BASE "path/data"; # wd for reading the file
+libname out BASE "path/output"; # setting wd for placing output
+
+data out.df2;
+	set in1.df1;
+	where col1>=156 and Date_col>="01JAN2000"d;
+	keep col1 col2 col3;
+run;
