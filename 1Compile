@@ -208,4 +208,15 @@ proc sort data=li1.df_name out=df_output;
 run;
 # sorts in scedning of col1, desc col2
 
+------- SET -----------------------
+DATA output_df_name;  ( TEMP table if we use work library, permanent table if some other library is used)
+SET input_df_name;
+RUN;
 
+-- the below will create the table in out library ( Just a copy of the df)
+data out.df_name;
+    set library12.df_name;
+run;
+
+You cannot use a SET statement to read unstructured data. (csv)
+Any data source that can be read via a library can be used as the input table in the SET statement. ( Excel, SAS tables)
