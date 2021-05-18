@@ -253,8 +253,10 @@ data out.df2;
 run;
 
 
-data df2;
-    set library.df1;
+libname lib1 BASE "path/data";
+
+data df2; ** output df name;
+    set lib1.df1; ** input df name;
     where col1 like "2016%"; ** it is character column, where year makes the starting 4 digits;
     format col2 col3 col4 comma17.;
     drop col5;
