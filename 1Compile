@@ -261,3 +261,13 @@ data df2; ** output df name;
     format col2 col3 col4 comma17.;
     drop col5;
 run;
+
+---------------
+libname libIN base "path/data";
+libname libOUT base "path/output";
+
+data libOUT.df2;
+set libIN.df1;
+where category="abc" and common_names like "%xyz%";
+drop Category col2 col3 col4; * no "," between column names;
+RUN;
