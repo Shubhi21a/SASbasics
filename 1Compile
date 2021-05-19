@@ -271,3 +271,17 @@ set libIN.df1;
 where category="abc" and common_names like "%xyz%";
 drop Category col2 col3 col4; * no "," between column names;
 RUN;
+
+--- Import basis filter, then sort
+libname out "~/folder/output";
+
+data out.df2;
+    set pg1.df1;
+    where Category='abc' and Common_Names like '%xyz%' 
+        and Common_Names not like '%lmn%';    
+    drop Category col2 col3 col4;
+run;
+
+proc sort data=out.df2;
+    by Common_Names;
+run;
