@@ -286,7 +286,7 @@ proc sort data=out.df2;
     by Common_Names;
 run;
 
-
+*------------------------------------------
 /* Common Numeric Functions	What it Does
 SUM (num1, num2, ...)	Returns the sum of nonmissing arguments.
 MEAN (num1, num2, ...)	Returns the arithmetic mean (average) of nonmissing arguments.
@@ -306,7 +306,7 @@ run;
 
 Note: you can use the shorthand notation OF col1 - coln to list a range of columns when the columns have the same name and end in a consecutive number.
 
-
+*----------------------------------------
 Character Function	What it Does
 UPCASE (char)  LOWCASE(char) 	Changes letters in a character string to uppercase or lowercase
 PROPCASE (char,<delimiters>) 	Changes the first letter of each word to uppercase and other letters to lowercase
@@ -319,3 +319,18 @@ data df2_P;
     drop col1 col2;
     where substr(col3,2,1)="P";  * colName, 2nd position, starting from 1st position;
 run; 
+
+*---------------------------------------
+Date Function	What it Does
+MONTH (SAS-date)	 Returns a number from 1 through 12 that represents the month
+YEAR (SAS-date)	 Returns the four-digit year
+DAY (SAS-date)	 Returns a number from 1 through 31 that represents the day of the month
+WEEKDAY (SAS-date)	 Returns a number from 1 through 7 that represents the day of the week (Sunday=1)
+QTR (SAS-date)	 Returns a number from 1 through 4 that represents the quarter
+These functions enable you to create SAS date values from the arguments.
+
+
+Date Function	What it Does
+TODAY () 	Returns the current date as a numeric SAS date value (no argument is required because the function reads the system clock)
+MDY (month, day, year)	 Returns a SAS date value from numeric month, day, and year values
+YRDIF (startdate, enddate, 'AGE')	 Calculates a precise age between two dates
