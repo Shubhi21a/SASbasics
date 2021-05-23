@@ -296,3 +296,12 @@ MIN (num1, num2, ...)	Returns the smallest nonmissing value from a list of argum
 MAX (num1, num2, ...)	Returns the largest value from a list of arguments.
 N (num1, num2, ...)	Returns the number of nonmissing numeric values.
 NMISS (num1, num2, ...)	Returns the number of null and SAS missing numeric values.  */
+
+data df2;
+    set lib1.df1;
+    colAvg=mean(col1, col2, col3, col4);
+    colRange=range(of col1-col2);
+    newCol = co7 +col8;
+run;
+
+Note: you can use the shorthand notation OF col1 - coln to list a range of columns when the columns have the same name and end in a consecutive number.
