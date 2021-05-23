@@ -285,3 +285,14 @@ run;
 proc sort data=out.df2;
     by Common_Names;
 run;
+
+
+/* Common Numeric Functions	What it Does
+SUM (num1, num2, ...)	Returns the sum of nonmissing arguments.
+MEAN (num1, num2, ...)	Returns the arithmetic mean (average) of nonmissing arguments.
+MEDIAN (num1, num2, ...)	Returns the median value of nonmissing arguments.
+RANGE (num1, num2, ...)	Returns the range of the nonmissing values.
+MIN (num1, num2, ...)	Returns the smallest nonmissing value from a list of arguments.
+MAX (num1, num2, ...)	Returns the largest value from a list of arguments.
+N (num1, num2, ...)	Returns the number of nonmissing numeric values.
+NMISS (num1, num2, ...)	Returns the number of null and SAS missing numeric values.  */
