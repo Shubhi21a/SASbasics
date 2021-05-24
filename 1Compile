@@ -344,3 +344,15 @@ data df2;
     Camp=sum(OC,TC,RV);
     format Sq comma6. Camp comma10.;
 run;
+
+------- Date manipulation
+data df2;
+    set l1.df1;
+    Year=substr(YearMon,1,4);
+    Month=substr(YearMon,6,2);
+    ReportDate=MDY(Month,1,Year);
+    Total=sum(c1,c1,c3);
+    format c1 c2 c3 Total comma17.
+           ReportDate monyy7.;
+    keep c1 c2 c2 c4 ReportDate Total;
+run;
