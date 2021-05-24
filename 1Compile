@@ -334,3 +334,13 @@ Date Function	What it Does
 TODAY () 	Returns the current date as a numeric SAS date value (no argument is required because the function reads the system clock)
 MDY (month, day, year)	 Returns a SAS date value from numeric month, day, and year values
 YRDIF (startdate, enddate, 'AGE')	 Calculates a precise age between two dates
+
+
+--------------------------------------
+data df2;
+    set l1.df1;
+    keep col1 col2 Sq Camp;
+    Sq=Acs*.0015625;
+    Camp=sum(OC,TC,RV);
+    format Sq comma6. Camp comma10.;
+run;
