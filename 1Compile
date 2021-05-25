@@ -346,10 +346,13 @@ data df2;
 run;
 
 ------- Date manipulation
+YearMon data sample: 2014M10, 	2013M08
+ReportDate	The first day of the reporting month.
+
 data df2;
     set l1.df1;
     Year=substr(YearMon,1,4);
-    Month=substr(YearMon,6,2);
+    Month=substr(YearMon,6,2); * starting position inclusive & no of char to take
     ReportDate=MDY(Month,1,Year);
     Total=sum(c1,c1,c3);
     format c1 c2 c3 Total comma17.
