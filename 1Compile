@@ -359,3 +359,31 @@ data df2;
            ReportDate monyy7.;
     keep c1 c2 c2 c4 ReportDate Total;
 run;
+
+-------------------- if then vs else-if then
+
+---- here if c1=., the c1group will come as 1, because condition1 is true, but so is condition2 (<= 920), 
+----and hence value of c1group gets overwritten from . to 1, after condition 2 comes true
+--- hence, use if else for correct values, as shown in the next snippet
+data df2;
+    set l1.df1;
+    keep c1 c2 c3;
+	*add ELSE keyword and remove final condition;
+	if c1=. then c1group=.;
+	if c1<=920 then c1group=1;
+	if c1>920 then c1group=0;
+run;
+
+---------- correct
+--- this will give c1group = . in case c1 = .
+data df2;
+    set l1.df1;
+    keep c1 c2 c3;
+    if c1=. then c1group=.;
+    else if c1<=920 then c1group=1;
+    else c1=0;
+run;
+
+proc freq data=df2;
+	tables c1group;
+run;
