@@ -387,3 +387,12 @@ run;
 proc freq data=df2;
 	tables c1group;
 run;
+
+
+-------------- lENGTH------------
+DATA df2;
+set df1;
+length colType $ 6;
+if col1 < 20 then colType = "low";
+else colType = "high";
+run;
