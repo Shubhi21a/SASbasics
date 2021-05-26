@@ -401,6 +401,12 @@ A warning in the log indicates that the length of character variable Ocean has a
 The length of a column is set the first time it occurs in the DATA step. It cannot be changed by a LENGTH statement that occurs later in the code. 
 So, Set the length towards the starting.
 
+c1  OceanCode	Ocean
+NA	A	Atlantic
+SP	P	Pacific
+EP	P	Pacific
+SI	I	Indian
+
 data df2;
 	set l1.df1;
 	keep c1 c2 c3 c4 OceanCode Ocean;
