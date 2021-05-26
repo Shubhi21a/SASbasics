@@ -392,7 +392,35 @@ run;
 -------------- lENGTH------------
 DATA df2;
 set df1;
-length colType $ 6;
-if col1 < 20 then colType = "low";
-else colType = "high";
+length colName $ 6;
+if col1 < 20 then colName = "low";
+else colName = "high";
+run;
+
+A warning in the log indicates that the length of character variable Ocean has already been set. 
+The length of a column is set the first time it occurs in the DATA step. It cannot be changed by a LENGTH statement that occurs later in the code. 
+So, Set the length towards the starting.
+
+data df2;
+	set l1.df1;
+	keep c1 c2 c3 c4 OceanCode Ocean;
+	c1 = upcase(c1);
+	OceanCode=substr(c1,2,1);
+	if OceanCode="I" then Ocean="Indian";
+	else if OceanCode="A" then Ocean="Atlantic";
+	else Ocean="Pacific";
+	LENGTH Ocean $8;
+run;
+
+# this will still lead to truncated value of column Ocean
+# correct order below
+data df2;
+	set l1.df1;
+        LENGTH Ocean $8;
+	keep c1 c2 c3 c4 OceanCode Ocean;
+	c1 = upcase(c1);
+	OceanCode=substr(c1,2,1);
+	if OceanCode="I" then Ocean="Indian";
+	else if OceanCode="A" then Ocean="Atlantic";
+	else Ocean="Pacific";
 run;
