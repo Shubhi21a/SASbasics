@@ -430,3 +430,23 @@ data df2;
 	else if OceanCode="A" then Ocean="Atlantic";
 	else Ocean="Pacific";
 run;
+
+----- then do-------------------
+to execute multiple statements
+ if abc then do;
+ process1;
+ process2;
+ process3;
+ output table1;
+ end;
+ else if abc2 then do;
+ process4;
+ prcoess5;
+ output table2;
+ end;
+ else do;
+ process6;
+ process7;
+ output table3;
+ end;
+ 
