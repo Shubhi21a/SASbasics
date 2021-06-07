@@ -462,3 +462,19 @@ to execute multiple statements
         output rear;
         end;
 run;
+
+
+data DF2;
+    set L1.DF1;
+    length ParkType $ 8;
+    if Type='M' then ParkType='A';
+    else if Type='P' then ParkType='B';
+    else if Type in ('NP', 'PR', 'PRE') then
+        ParkType='C';
+    else if Type in ('R', 'RI') then ParkType='D';
+    else if Type='S' then ParkType='E';
+run;
+
+proc freq data=DF2;
+    tables ParkType;
+run;
