@@ -478,3 +478,22 @@ run;
 proc freq data=DF2;
     tables ParkType;
 run;
+
+
+************** DO Statement;
+data df_Ps df_Ms;
+set l1.df1;
+where type in ('NM', 'NP');
+sum_col=sum(col1,col2,col3);
+format sum_col comma17.;
+length PType $ 8;
+if type='NP' then do;
+PType='P';
+output df_Ps;
+end;
+else do;
+PType='M';
+output df_Ms;
+end;
+keep Reg PName DayVisits OtherLodging sum_col PType;
+run;
