@@ -497,3 +497,26 @@ output df_Ms;
 end;
 keep Reg PName DayVisits OtherLodging sum_col PType;
 run;
+
+--------- Adding Title------------
+title "abc";
+title2 "xyz;
+proc means data=pg1.storm_final;
+   var MaxWindMPH MinPressure;
+run;
+title2 "123";
+proc freq data=pg1.storm_final;
+   tables BasinName;
+run; 
+
+-- abc appears on top of both proc means and freq output ( since it was not explicitly overwritten by  new title being mentioned/ no title "").
+--- title 2 is diff for both
+
+
+
+-- macro var in title
+%let zone = North;
+
+title1 "Sales Report";
+title2 "Zone=&zone"; * macro var in ""
+
