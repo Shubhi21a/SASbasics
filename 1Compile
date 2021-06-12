@@ -509,6 +509,8 @@ proc freq data=pg1.storm_final;
    tables BasinName;
 run; 
 
+title2; * a null statment to ensure that this title2 does not keep repeating in further procs
+
 -- abc appears on top of both proc means and freq output ( since it was not explicitly overwritten by  new title being mentioned/ no title "").
 --- title 2 is diff for both
 
@@ -520,3 +522,15 @@ run;
 title1 "Sales Report";
 title2 "Zone=&zone"; * macro var in ""
 
+---- adding label ( temporary) to column names. Helps describe the column. Shown in proc freq and report etc.
+--- can help in pivots etc. one does not have to update the reports later in excel, if we take the values from 
+
+label varName = "Label";
+
+to show labels in proc print, we have to explicitly mention label
+
+proc print data= df label noobs; * noobs- no observations, removes observation number next to the output
+
+
+
+proc 
