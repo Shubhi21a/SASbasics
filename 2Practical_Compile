@@ -1,0 +1,89 @@
+-- Proc Freq + where, single var
+proc freq data = df;
+tables col1;
+where year(date_col)= 2021;
+run;
+
+-- Proc freq- Multiple vars- cross tab
+proc freq data = df;
+tables col1*col2  --- Note: no ; here!
+/norow nocol nopercent missing;
+run;
+
+-- Making Quantiles as col for grouping
+-- Making Deciles ( therefore, groups= 10), col1 is the column whose value will be used to make quantiles
+proc rank data = df 
+out= df1
+groups=10;
+var col1;
+ranks decile_col1;
+run;
+
+-- Proc means: percentiles
+proc means
+data = df  --- note: no ; here!
+n nmiss min p1 p5 p10 p25 p50 p75 p90 p95 p99 max mean stddev;
+var col1 col2;
+run;
+
+-- proc means- by class ( the values are grouped by vars in class, multiple columns can be mentioned in class as well)
+-- can give cluttered view, if too many vars mentioned- for getting metrics for, each var will NOT BE  a new column. For that, use proc SQL
+proc means data = df
+n nmiss mean min max;
+class cat1 cat2;
+var col1 col2;
+run;
+
+-- PROC SQL
+proc sql;
+select cat1, mean(col1) as avg_col1, mean(col2) as avg_col2
+from df
+group by cat1;
+quit;
+
+-- PROC SQL- CREATE TABLE
+proc sql;
+create table df2
+as select a.*, b.col1, b.col2
+from tbl1 a
+left join tbl2 b
+on a.key = b.key;
+quit;
+
+-- set + if
+data df2;
+set df1;
+if col1<50 and col2>100 then col3 = 1;
+else col3 = 0;
+run;
+
+-- set + else if
+data df2;
+set df1;
+if cat1 in ('a','b') then col1 = 'A1';
+else if cat1 in ('c','d') then col1 = 'B1';
+else col1 = 'C1';
+run;
+
+
+
+
+
+-- Retain- Rearranging columns ( mention columns in desired order)
+data df2;
+retain col1 col2 col3;
+set df2;
+run;
+
+-- drop
+data df2 ( drop= col4);
+set df1;
+if col1 < 0 then col1=.;
+where cat1 in ('a','b','c');
+run;
+
+
+-- proc print
+proc print data = df ( obs=5); 
+run;
+
