@@ -50,11 +50,11 @@ left join tbl2 b
 on a.key = b.key;
 quit;
 
--- set + if
+-- set + if, if then else
 data df2;
 set df1;
-if col1<50 and col2>100 then col3 = 1;
-else col3 = 0;
+if col1<50 and col2>100 then col3 = 1; else col3 = 0;
+if col1<500 and col2>10 then col4 = 1;
 run;
 
 -- set + else if
@@ -65,14 +65,9 @@ else if cat1 in ('c','d') then col1 = 'B1';
 else col1 = 'C1';
 run;
 
-
-
-
-
--- Retain- Rearranging columns ( mention columns in desired order)
-data df2;
-retain col1 col2 col3;
-set df2;
+-- set+ keep
+data df2 ( keep = col1 col3 col5);
+set df;
 run;
 
 -- drop
@@ -82,8 +77,26 @@ if col1 < 0 then col1=.;
 where cat1 in ('a','b','c');
 run;
 
+-- set + where;
+data df_A;
+set df2;
+where cat1 = 'A';
+run;
 
--- proc print
+-- Retain- Rearranging columns ( mention columns in desired order)
+data df2;
+retain col1 col2 col3;
+set df2;
+run;
+
+-- proc print - similar to head
 proc print data = df ( obs=5); 
 run;
+
+-- proc contents- tells all vars + data type
+proc contents data = df; 
+run;
+
+
+-- Add: IF THEN DO; macro vars, For loop, if then and if else , first obs;
 
