@@ -10,7 +10,21 @@ tables col1*col2  --- Note: no ; here!
 /norow nocol nopercent missing;
 run;
 
--- Making Quantiles as col for grouping
+-- summing multiple columns
+data df2;
+set df1;
+total_sales_H1 = sum(of Sales_M1 - Sales_M6); * will sum col Sales_1, Sales_2, Sales_3,Sales_4,Sales_5,Sales_6
+total_sales_H1 = sum(Sales_1, Sales_2, Sales_3,Sales_4,Sales_5,Sales_6);
+RUN;
+
+--- subsetting + filter 
+data df2
+(keep = col1 col2 col3 );
+set df2;
+where col1 in (2020,2021);
+run;
+
+-- Making Quantiles as col for grouping============
 -- Making Deciles ( therefore, groups= 10), col1 is the column whose value will be used to make quantiles
 proc rank data = df 
 out= df1
