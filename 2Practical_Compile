@@ -1,3 +1,21 @@
+libname lib1 'D:\Folder1\FOLDER2';
+
+#https://online.stat.psu.edu/stat480/lesson/3/3.1
+
+PROC CONTENTS data = lib1._ALL_ NODS;
+RUN;
+
+#the _ALL_ option requests a listing of all of the SAS files in the library
+#the NODS option (which stands for "no details") suppresses the printing of detailed information about each file when you specify the _ALL_ option.
+
+# List files equivalent for listing sas files in a directory , this was slow compared to proc contents above
+PROC SQL;
+SELECT * 
+FROM SASHELP.VMEMBER
+WHERE libname = 'LIB1'; # library name in quotes to be mentioned in CAPS
+quit;
+* and memname like "%ABC%";
+
 -- Proc Freq + where, single var
 proc freq data = df;
 tables col1;
